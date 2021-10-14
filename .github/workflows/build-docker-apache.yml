@@ -13,7 +13,10 @@ on:
 #    inputs:
 #      tag:
 #        description: 'Test scenario tag' 
-      
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
