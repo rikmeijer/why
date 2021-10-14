@@ -11,8 +11,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-      tags:
-        description: 'Test scenario tags' 
+      tag:
+        description: 'Test scenario tag' 
       
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -30,13 +30,13 @@ jobs:
             registry: ghcr.io
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
-        - name: Get the version
-          id: vars
-          run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
-        - name: Build the tagged Docker image
-          run: docker build . --file Dockerfile --tag rikmeijer84/why:${{steps.vars.outputs.tag}}
-        - name: Push the tagged Docker image
-          run: docker push rikmeijer84/why:${{steps.vars.outputs.tag}}
+#        - name: Get the version
+#          id: vars
+#          run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+#        - name: Build the tagged Docker image
+#          run: docker build . --file Dockerfile --tag rikmeijer84/why:${{github.event.inputs.tag}}
+#        - name: Push the tagged Docker image
+#          run: docker push rikmeijer84/why:${{github.event.inputs.tag}}
         - name: Build the latest Docker image
           run: docker build . --file Dockerfile --tag rikmeijer84/why:latest
         - name: Push the latest Docker image
