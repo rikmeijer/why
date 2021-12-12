@@ -1,6 +1,6 @@
 #why
 
-Decentralized learning, shared knowledge
+Decentralized learning, shared knowledge, universal wisdom
 
 Discovery, learning it all starts with the question "Why?"
 
