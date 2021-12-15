@@ -13,7 +13,7 @@ final class FrontpageTest extends DuskTestCase
      *
      * @throws \Throwable
      */
-    public function testBasicExample() : void
+    public function testSeeWhy() : void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
