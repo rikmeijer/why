@@ -10,6 +10,7 @@ final class StoreServerLocationTest extends TestCase
 {
     public function testWith_InitialGet_Expect_NoServerLocationAvailable() : void
     {
+        Storage::fake('local');
 
         $response = $this->get(route('server.location.get'));
         $response->assertNotFound();
@@ -17,6 +18,8 @@ final class StoreServerLocationTest extends TestCase
 
     public function testWith_PostLatLong_Expect_ServerLocationAvailable() : void
     {
+        Storage::fake('local');
+
         $response = $this->get(route('server.location.get'));
         $response->assertNotFound();
 
@@ -26,10 +29,5 @@ final class StoreServerLocationTest extends TestCase
         $response = $this->get(route('server.location.get'));
         $response->assertOk();
         $response->assertJson(['latitude' => 100, 'longitude' => 200]);
-    }
-
-    protected function tearDown(): void
-    {
-        Storage::disk('local')->delete('location');
     }
 }
