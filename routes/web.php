@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::name('server.')->group(static function() {
+    Route::get('/location', static function() {
+        return response(status: 404);
+    })->name('location');
+});
