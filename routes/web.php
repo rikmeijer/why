@@ -20,14 +20,15 @@ Route::get('/', function () {
 
 Route::prefix('/server')->name('server.location.')->group(static function() {
     Route::get('/location', static function() {
-        if (Storage::disk('local')->exists('location')) {
-            return response()->json(json_decode(Storage::disk('local')->get('location'), false, 512, JSON_THROW_ON_ERROR));
+        $location = config('app.location');
+        if ($location !== null) {
+            return response()->json($location);
         }
         return response(status: 404);
     })->name('get');
 
     Route::post('/location', static function() {
-        Storage::disk('local')->put('location', json_encode(request()->all(), JSON_THROW_ON_ERROR));
+        config(['app.location' => request()->all()]);
         return response(status: 201);
     })->name('post');
 });
