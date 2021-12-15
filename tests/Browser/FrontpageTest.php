@@ -8,16 +8,22 @@ use Tests\DuskTestCase;
 
 final class FrontpageTest extends DuskTestCase
 {
-    /**
-     * A basic browser test example.
-     *
-     * @throws \Throwable
-     */
     public function testSeeWhy() : void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
                     ->assertSee('Why');
+        });
+    }
+    public function testSeeOpenStreetMap() : void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->resize(1024, 768)
+                ->visit('/')
+                ->assertSee('Leaflet | © OpenStreetMap contributors')
+                ->assertNotPresent('.leaflet-marker-icon')
+                ->clickAtPoint(512, 384)
+            ->assertPresent('.leaflet-marker-icon');
         });
     }
 }
