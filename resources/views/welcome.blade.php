@@ -24,6 +24,9 @@
 
     <script>
         let marker;
+        @if($location !== null)
+            marker = L.marker().addTo(map);
+        @endif
         let map = L.map('map', {
             zoom: 13
         })

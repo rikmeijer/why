@@ -232,4 +232,9 @@ return [
 
     ],
 
+
+    'instance-configuration' => static function(string $key) {
+        $storage = \Illuminate\Support\Facades\Storage::disk('instance-configuration');
+        return $storage->exists($key) ? json_decode($storage->get($key)) : null;
+    }
 ];

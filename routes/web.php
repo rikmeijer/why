@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ['location' => config('app.instance-configuration')('location')]);
 });
 
 Route::prefix('/server')->name('server.location.')->group(static function() {
